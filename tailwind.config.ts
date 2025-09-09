@@ -57,20 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom science platform colors
-        science: {
-          primary: "hsl(var(--science-primary))",
-          secondary: "hsl(var(--science-secondary))",
-          accent: "hsl(var(--science-accent))",
-        },
-        trust: {
-          green: "hsl(var(--trust-green))",
-        },
-        calm: {
-          green: "hsl(var(--calm-green))",
-        },
-        deep: {
-          green: "hsl(var(--deep-green))",
+        // Custom modern colors
+        modern: {
+          dark: "hsl(var(--modern-dark))",
+          green: "hsl(var(--modern-green))",
+          beige: "hsl(var(--modern-beige))",
+          lightGreen: "hsl(var(--modern-light-green))",
+          cream: "hsl(var(--modern-cream))",
         },
       },
       backgroundImage: {

@@ -7,7 +7,7 @@ const Index = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-calm-blue">
+    <div className="min-h-screen bg-gradient-to-br from-background to-calm-green">
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16 animate-fade-in">
@@ -54,7 +54,7 @@ const Index = () => {
             <CardHeader className="text-center pb-4">
               <div className="flex justify-center gap-2 mb-4">
                 <BookOpen className="h-12 w-12 text-science-primary" />
-                <Play className="h-12 w-12 text-trust-blue" />
+                <Play className="h-12 w-12 text-trust-green" />
               </div>
               <CardTitle className="text-2xl text-foreground">인지편향 벗어나기</CardTitle>
             </CardHeader>

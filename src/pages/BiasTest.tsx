@@ -37,7 +37,7 @@ const BiasTest = () => {
   const allAnswered = questions.every(q => answers[q.id] !== undefined);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-calm-blue py-8">
+    <div className="min-h-screen bg-gradient-to-br from-background to-calm-green py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-8">
           <Button 

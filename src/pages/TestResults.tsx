@@ -80,7 +80,7 @@ const TestResults = () => {
 
   if (results.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background to-calm-blue flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-background to-calm-green flex items-center justify-center">
         <Card className="shadow-card animate-scale-in max-w-md w-full mx-4">
           <CardContent className="text-center py-8">
             <h2 className="text-2xl font-bold mb-4 text-foreground">축하합니다!</h2>
@@ -97,7 +97,7 @@ const TestResults = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-calm-blue py-8">
+    <div className="min-h-screen bg-gradient-to-br from-background to-calm-green py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-8">
           <Button 

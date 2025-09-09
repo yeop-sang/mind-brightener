@@ -8,51 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 216 50% 98%;
-    --foreground: 215 25% 15%;
+    --background: 120 50% 98%;
+    --foreground: 140 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 140 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 140 25% 15%;
 
-    --primary: 217 91% 60%;
+    --primary: 142 76% 36%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 32% 91%;
-    --secondary-foreground: 215 25% 15%;
+    --secondary: 138 32% 91%;
+    --secondary-foreground: 140 25% 15%;
 
-    --muted: 214 32% 91%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 138 32% 91%;
+    --muted-foreground: 140 16% 47%;
 
-    --accent: 204 94% 94%;
-    --accent-foreground: 215 25% 15%;
+    --accent: 142 94% 94%;
+    --accent-foreground: 140 25% 15%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 138 32% 91%;
+    --input: 138 32% 91%;
+    --ring: 142 76% 36%;
 
     /* Custom design tokens */
-    --science-primary: 217 91% 60%;
-    --science-secondary: 213 27% 84%;
-    --science-accent: 204 94% 94%;
-    --trust-blue: 220 100% 66%;
-    --calm-blue: 213 92% 95%;
-    --deep-blue: 215 84% 32%;
+    --science-primary: 142 76% 36%;
+    --science-secondary: 138 27% 84%;
+    --science-accent: 142 94% 94%;
+    --trust-green: 120 100% 40%;
+    --calm-green: 120 92% 95%;
+    --deep-green: 140 84% 25%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(213 27% 84%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(213 92% 95%));
-    --gradient-button: linear-gradient(135deg, hsl(217 91% 60%), hsl(220 100% 66%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%), hsl(138 27% 84%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(120 92% 95%));
+    --gradient-button: linear-gradient(135deg, hsl(142 76% 36%), hsl(120 100% 40%));
     
     /* Shadows */
-    --shadow-card: 0 4px 20px -2px hsl(217 91% 60% / 0.1);
-    --shadow-button: 0 4px 15px -3px hsl(217 91% 60% / 0.3);
-    --shadow-elegant: 0 10px 40px -10px hsl(217 91% 60% / 0.2);
+    --shadow-card: 0 4px 20px -2px hsl(142 76% 36% / 0.1);
+    --shadow-button: 0 4px 15px -3px hsl(142 76% 36% / 0.3);
+    --shadow-elegant: 0 10px 40px -10px hsl(142 76% 36% / 0.2);
 
     --radius: 0.5rem;
 

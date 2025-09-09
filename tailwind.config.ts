@@ -64,13 +64,13 @@ export default {
           accent: "hsl(var(--science-accent))",
         },
         trust: {
-          blue: "hsl(var(--trust-blue))",
+          green: "hsl(var(--trust-green))",
         },
         calm: {
-          blue: "hsl(var(--calm-blue))",
+          green: "hsl(var(--calm-green))",
         },
         deep: {
-          blue: "hsl(var(--deep-blue))",
+          green: "hsl(var(--deep-green))",
         },
       },
       backgroundImage: {

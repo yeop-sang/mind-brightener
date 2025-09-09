@@ -177,9 +177,9 @@ const Index = () => {
         </header>
 
         {/* Main Content - Two Column Layout */}
-        <section className="grid lg:grid-cols-2 gap-12 mb-20">
+        <section className="grid lg:grid-cols-5 gap-12 mb-20">
           {/* Left Column - Test Actions */}
-          <div className="space-y-8">
+          <div className="space-y-8 lg:col-span-2">
             <Card className="relative overflow-hidden bg-white/90 backdrop-blur-sm hover:shadow-card transition-all duration-500 hover:-translate-y-2 group border-0 shadow-lg">
               <div className="absolute inset-0 bg-gradient-to-br from-modern-dark/5 via-transparent to-modern-green/5" />
               <CardContent className="relative p-10">
@@ -231,7 +231,7 @@ const Index = () => {
           </div>
 
           {/* Right Column - Login/User Info */}
-          <div className="flex">
+          <div className="flex lg:col-span-3">
             {user ? (
               /* User Info Section */
               <Card className="relative overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-elegant h-full">

@@ -97,10 +97,10 @@ const BiasTest = () => {
                       <button
                         key={value}
                         onClick={() => handleAnswerChange(question.id, value)}
-                        className={`w-10 h-10 rounded-full border-2 transition-all duration-200 ${
+                        className={`w-10 h-10 rounded-full border-2 transition-all duration-200 font-bold ${
                           answers[question.id] === value
-                            ? 'bg-science-primary border-science-primary text-white shadow-button'
-                            : 'border-border hover:border-science-primary hover:bg-science-accent'
+                            ? 'bg-modern-dark border-modern-dark text-white shadow-lg'
+                            : 'border-modern-beige hover:border-modern-green hover:bg-modern-green/10 text-modern-dark'
                         }`}
                       >
                         {value}

@@ -227,16 +227,15 @@ const TestResults = () => {
                 <div className="flex gap-3">
                   <Button 
                     onClick={() => navigate(`/correction/${bias.name.toLowerCase()}`)}
-                    variant="science"
-                    className="flex-1"
+                    className="flex-1 bg-modern-dark hover:bg-modern-green text-white font-medium"
                   >
                     <BookOpen className="mr-2 h-4 w-4" />
                     웹툰으로 교정하기
                   </Button>
                   <Button 
                     onClick={() => navigate(`/correction/${bias.name.toLowerCase()}?type=animation`)}
-                    variant="science"
-                    className="flex-1"
+                    variant="outline"
+                    className="flex-1 border-2 border-modern-green text-modern-dark hover:bg-modern-green hover:text-white font-medium"
                   >
                     <Play className="mr-2 h-4 w-4" />
                     애니메이션으로 교정하기

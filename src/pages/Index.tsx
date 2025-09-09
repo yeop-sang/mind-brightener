@@ -231,12 +231,12 @@ const Index = () => {
           </div>
 
           {/* Right Column - Login/User Info */}
-          <div>
+          <div className="flex">
             {user ? (
               /* User Info Section */
-              <Card className="relative overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-elegant">
+              <Card className="relative overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-elegant h-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-modern-green/5 via-transparent to-modern-beige/5" />
-                <CardContent className="relative p-10">
+                <CardContent className="relative p-10 h-full flex flex-col">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-modern-green/10 rounded-2xl mb-6">
                       <User className="w-8 h-8 text-modern-green" />
@@ -249,7 +249,7 @@ const Index = () => {
                     </p>
                   </div>
                   
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-4 mb-8 flex-grow">
                     <div className="p-4 bg-modern-beige/20 rounded-xl">
                       <p className="text-sm text-modern-dark/70 mb-1">이메일</p>
                       <p className="font-medium text-modern-dark">{user.email}</p>
@@ -265,7 +265,7 @@ const Index = () => {
                   <Button 
                     onClick={handleSignOut}
                     variant="outline"
-                    className="w-full border-2 border-modern-green text-modern-green hover:bg-modern-green hover:text-white transition-all duration-300 py-6 font-medium rounded-xl"
+                    className="w-full border-2 border-modern-green text-modern-green hover:bg-modern-green hover:text-white transition-all duration-300 py-6 font-medium rounded-xl mt-auto"
                   >
                     로그아웃
                   </Button>
@@ -273,9 +273,9 @@ const Index = () => {
               </Card>
             ) : (
               /* Login Section */
-              <Card className="relative overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-elegant">
+              <Card className="relative overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-elegant h-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-modern-dark/5 via-transparent to-modern-green/5" />
-                <CardContent className="relative p-10">
+                <CardContent className="relative p-10 h-full flex flex-col">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-modern-dark/10 rounded-2xl mb-6">
                       <User className="w-8 h-8 text-modern-dark" />
@@ -288,7 +288,7 @@ const Index = () => {
                     </p>
                   </div>
                   
-                  <form onSubmit={handleAuth} className="space-y-6">
+                  <form onSubmit={handleAuth} className="space-y-6 flex-grow flex flex-col">
                     <div className="space-y-2">
                       <Label htmlFor="email" className="text-modern-dark font-medium">이메일</Label>
                       <div className="relative">
@@ -320,6 +320,8 @@ const Index = () => {
                         />
                       </div>
                     </div>
+                    
+                    <div className="flex-grow"></div>
                     
                     <Button 
                       type="submit" 

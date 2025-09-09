@@ -20,14 +20,56 @@ const biasDefinitions: Record<string, BiasResult> = {
     color: "destructive"
   },
   availability: {
-    name: "가용성 편향",
+    name: "가용성편향",
     description: "최근에 경험했거나 기억하기 쉬운 사건의 가능성을 과대평가하는 경향",
     severity: "보통",
     color: "default"
   },
   anchoring: {
-    name: "앵커링 편향",
+    name: "앵커링편향",
     description: "처음 접한 정보에 과도하게 의존하여 후속 판단을 내리는 경향",
+    severity: "보통",
+    color: "secondary"
+  },
+  authority: {
+    name: "권위편향",
+    description: "권위자나 전문가의 의견을 비판 없이 수용하는 경향",
+    severity: "보통",
+    color: "secondary"
+  },
+  conformity: {
+    name: "동조편향",
+    description: "집단의 의견에 맞추려 하고 다수의 선택을 따르는 경향",
+    severity: "보통",
+    color: "default"
+  },
+  overconfidence: {
+    name: "과신편향",
+    description: "자신의 판단이나 능력을 실제보다 과대평가하는 경향",
+    severity: "높음",
+    color: "destructive"
+  },
+  halo: {
+    name: "후광효과",
+    description: "한 가지 긍정적 특성을 바탕으로 전체를 긍정적으로 평가하는 경향",
+    severity: "보통",
+    color: "secondary"
+  },
+  inferiority: {
+    name: "열등감편향",
+    description: "다른 사람과 비교하여 자신을 과소평가하는 경향",
+    severity: "보통",
+    color: "default"
+  },
+  ingroup: {
+    name: "내집단편향",
+    description: "자신이 속한 집단을 다른 집단보다 선호하고 편향적으로 평가하는 경향",
+    severity: "높음",
+    color: "destructive"
+  },
+  loss_aversion: {
+    name: "손실회피편향",
+    description: "이익을 얻는 것보다 손실을 피하는 것을 더 중요하게 여기는 경향",
     severity: "보통",
     color: "secondary"
   },
@@ -37,11 +79,59 @@ const biasDefinitions: Record<string, BiasResult> = {
     severity: "높음",
     color: "destructive"
   },
-  overconfidence: {
-    name: "과신편향",
-    description: "자신의 판단이나 능력을 실제보다 과대평가하는 경향",
+  entitlement: {
+    name: "권리의식편향",
+    description: "자신이 받을 권리가 있다고 생각하는 것을 과대평가하는 경향",
+    severity: "보통",
+    color: "default"
+  },
+  sunk_cost: {
+    name: "매몰비용편향",
+    description: "이미 투자한 비용 때문에 비합리적인 선택을 지속하는 경향",
     severity: "높음",
     color: "destructive"
+  },
+  victim: {
+    name: "피해의식편향",
+    description: "자신이 다른 사람보다 더 어려운 상황에 있다고 생각하는 경향",
+    severity: "보통",
+    color: "default"
+  },
+  optimism: {
+    name: "낙관편향",
+    description: "미래의 결과를 실제보다 긍정적으로 예상하는 경향",
+    severity: "보통",
+    color: "secondary"
+  },
+  status_quo: {
+    name: "현상유지편향",
+    description: "변화를 피하고 현재 상황을 유지하려는 경향",
+    severity: "보통",
+    color: "default"
+  },
+  endowment: {
+    name: "소유효과편향",
+    description: "자신이 소유한 것에 과도하게 높은 가치를 부여하는 경향",
+    severity: "보통",
+    color: "secondary"
+  },
+  transparency: {
+    name: "투명성착각편향",
+    description: "자신의 생각이나 지식이 다른 사람에게도 명확할 것이라고 가정하는 경향",
+    severity: "보통",
+    color: "default"
+  },
+  impact_illusion: {
+    name: "영향력착각편향",
+    description: "자신의 행동이나 발언이 다른 사람에게 미치는 영향을 과대평가하는 경향",
+    severity: "보통",
+    color: "secondary"
+  },
+  defensive: {
+    name: "방어적편향",
+    description: "비판이나 반대 의견에 대해 즉각적으로 방어적 자세를 취하는 경향",
+    severity: "보통",
+    color: "default"
   }
 };
 
@@ -60,13 +150,18 @@ const TestResults = () => {
     const biasScores: Record<string, number> = {};
 
     Object.entries(answers).forEach(([questionId, score]) => {
-      const question = {
-        1: "confirmation", 2: "availability", 3: "anchoring", 4: "attribution",
-        5: "availability", 6: "overconfidence", 7: "confirmation", 8: "overconfidence"
-      }[questionId as any];
+      const questionToBias: Record<string, string> = {
+        "1": "anchoring", "2": "availability", "3": "authority", "4": "conformity", "5": "authority",
+        "6": "overconfidence", "7": "halo", "8": "inferiority", "9": "ingroup", "10": "availability",
+        "11": "loss_aversion", "12": "halo", "13": "attribution", "14": "entitlement", "15": "sunk_cost",
+        "16": "victim", "17": "optimism", "18": "status_quo", "19": "confirmation", "20": "confirmation",
+        "21": "overconfidence", "22": "loss_aversion", "23": "endowment", "24": "transparency", "25": "impact_illusion",
+        "26": "impact_illusion", "27": "impact_illusion", "28": "impact_illusion", "29": "defensive", "30": "defensive"
+      };
       
-      if (question) {
-        biasScores[question] = (biasScores[question] || 0) + (score as number);
+      const bias = questionToBias[questionId];
+      if (bias) {
+        biasScores[bias] = (biasScores[bias] || 0) + (score as number);
       }
     });
 

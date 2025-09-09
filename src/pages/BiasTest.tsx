@@ -11,14 +11,36 @@ interface Question {
 }
 
 const questions: Question[] = [
-  { id: 1, text: "새로운 연구 결과가 내 기존 가설과 다르면, 그 결과를 의심하는 편이다", bias: "confirmation" },
-  { id: 2, text: "과거에 성공한 방법이라면 새로운 상황에서도 잘 작동할 것이라고 생각한다", bias: "availability" },
-  { id: 3, text: "첫 번째로 얻은 정보나 인상이 후속 판단에 큰 영향을 준다", bias: "anchoring" },
-  { id: 4, text: "연구 성과가 좋을 때는 내 능력 덕분이고, 나쁠 때는 외부 요인 때문이라고 생각한다", bias: "attribution" },
-  { id: 5, text: "통계적으로 드문 사건이라도 최근에 경험했다면 자주 일어날 것 같다고 느낀다", bias: "availability" },
-  { id: 6, text: "내가 전문 분야가 아닌 영역에서도 내 판단이 정확할 것이라고 생각한다", bias: "overconfidence" },
-  { id: 7, text: "연구 과정에서 예상과 다른 결과가 나오면 실험 오류부터 의심한다", bias: "confirmation" },
-  { id: 8, text: "동료들의 의견보다는 내 직감을 더 신뢰하는 편이다", bias: "overconfidence" }
+  { id: 1, text: "회의할 때 처음 제시된 의견이 최종 결정에 상당히 영향을 미친다.", bias: "anchoring" },
+  { id: 2, text: "언론과 주변 동료로부터 자주 듣게 되는 연구 주제가 중요한 연구이다.", bias: "availability" },
+  { id: 3, text: "회의할 때 일관된 의견을 제시하는 사람의 의견이 타당한 것 같다.", bias: "authority" },
+  { id: 4, text: "자기 생각과 다르더라도 동료들과 유사한 선택을 할 때 편안함을 느낀다.", bias: "conformity" },
+  { id: 5, text: "자기보다 전문가인 사람(교수/전공자)의 의견은 일단 믿고 따른다.", bias: "authority" },
+  { id: 6, text: "내가 내는 의견에 찬성하는 사람이 많을 것이라고 생각한다.", bias: "overconfidence" },
+  { id: 7, text: "내가 호의적으로 생각하는 사람의 말에 더 신뢰가 간다.", bias: "halo" },
+  { id: 8, text: "나는 능력이 뛰어난 사람들과 함께 있을 때 불편함을 느낀다.", bias: "inferiority" },
+  { id: 9, text: "나는 다른 팀의 사람들보다 우리 팀 구성원의 의견을 더 중요하게 생각한다.", bias: "ingroup" },
+  { id: 10, text: "회의할 때 일부만 알고 있는 정보보다 모든 사람에게 익숙한 정보를 더 많이 논의한다.", bias: "availability" },
+  { id: 11, text: "공동 연구를 할 때 자신의 노하우를 공유하면 손해보는 것 같아서 공유하기가 꺼려진다.", bias: "loss_aversion" },
+  { id: 12, text: "어떤 사람이 특정 일을 잘하면, 그다음 일도 잘할 것으로 생각한다.", bias: "halo" },
+  { id: 13, text: "결과가 좋으면 내 기여 덕분이고, 결과가 나쁘면 다른 사람 탓이라고 생각한다.", bias: "attribution" },
+  { id: 14, text: "내가 노력한 만큼 보상을 받는 것이 당연하다고 생각한다.", bias: "entitlement" },
+  { id: 15, text: "내 연구 방향이 잘못되었음을 깨달아도, 지금까지 해온 것을 포기하고 새로 시작하기가 어렵다.", bias: "sunk_cost" },
+  { id: 16, text: "다른 사람에 비해 내가 맡은 일이 더 힘들고 어려운 일인 것 같다.", bias: "victim" },
+  { id: 17, text: "내가 하는 일은 왠지 잘될 것 같다.", bias: "optimism" },
+  { id: 18, text: "특별한 이득이 없다면 새로운 시도보다 현재 상태를 유지한다.", bias: "status_quo" },
+  { id: 19, text: "내 생각과 일치하는 사례는 쉽게 눈에 들어오지만, 일치하지 않는 사례는 잘 보이지 않는다.", bias: "confirmation" },
+  { id: 20, text: "새로운 증거가 제시되었더라도 기존의 신념을 쉽게 수정하기 어렵다.", bias: "confirmation" },
+  { id: 21, text: "사람들은 다른 사람들보다 자신의 연구 능력이 뛰어난 편이라고 생각한다.", bias: "overconfidence" },
+  { id: 22, text: "위험을 감수하고 도전하는 것보다 손실을 최소화하는 것을 선호한다.", bias: "loss_aversion" },
+  { id: 23, text: "시간과 노력을 들여 직접 얻은 성과에 대해 특히 더 높은 가치를 부여한다.", bias: "endowment" },
+  { id: 24, text: "내가 알고 있는 것은 다른 사람도 잘 알 것이라 생각하고 자세히 설명하지 않는다.", bias: "transparency" },
+  { id: 25, text: "회의할 때 내가 발언을 시작하면 전체 논의 분위기가 긍정적으로 달라진다.", bias: "impact_illusion" },
+  { id: 26, text: "동료와 협업할 때, 내가 제시한 아이디어가 논의의 진행 속도나 방향에 큰 영향을 미친다.", bias: "impact_illusion" },
+  { id: 27, text: "내가 먼저 피드백을 제시하면 팀의 논의 흐름에 긍정적인 변화가 생긴다.", bias: "impact_illusion" },
+  { id: 28, text: "내가 질문을 던질 때, 팀원들이 논의에 더 적극적으로 참여한다고 느낀다.", bias: "impact_illusion" },
+  { id: 29, text: "회의 중 누군가가 내 의견에 이의를 제기하면, 나는 즉각적으로 그 의견을 방어하려는 경향이 있다.", bias: "defensive" },
+  { id: 30, text: "팀원이 실수를 했을 때, 나는 그 실수를 학습의 기회로 삼기보다는 책임을 묻는 경우가 많다.", bias: "defensive" }
 ];
 
 const BiasTest = () => {
@@ -59,7 +81,7 @@ const BiasTest = () => {
         <Card className="shadow-card animate-scale-in">
           <CardHeader>
             <CardTitle className="text-xl text-center">
-              진단 문항 ({Object.keys(answers).length}/8)
+              진단 문항 ({Object.keys(answers).length}/30)
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">

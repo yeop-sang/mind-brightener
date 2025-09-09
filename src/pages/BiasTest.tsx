@@ -65,33 +65,33 @@ const BiasTest = () => {
           <Button 
             variant="ghost" 
             onClick={() => navigate('/')}
-            className="mb-4"
+            className="mb-4 font-medium"
           >
             <ChevronLeft className="mr-2 h-4 w-4" />
             돌아가기
           </Button>
-          <h1 className="text-3xl font-bold text-foreground mb-2 animate-fade-in">
+          <h1 className="text-3xl font-black text-foreground mb-2 animate-fade-in">
             인지편향 자가진단 검사
           </h1>
-          <p className="text-muted-foreground animate-fade-in">
+          <p className="text-muted-foreground animate-fade-in font-light">
             각 문항을 읽고 자신에게 해당하는 정도를 선택해주세요
           </p>
         </div>
 
         <Card className="shadow-card animate-scale-in">
           <CardHeader>
-            <CardTitle className="text-xl text-center">
+            <CardTitle className="text-xl text-center font-bold">
               진단 문항 ({Object.keys(answers).length}/30)
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             {questions.map((question, index) => (
               <div key={question.id} className="space-y-3 pb-6 border-b border-border last:border-b-0">
-                <p className="font-medium text-foreground">
+                <p className="font-bold text-foreground">
                   {index + 1}. {question.text}
                 </p>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">전혀 그렇지 않다</span>
+                  <span className="text-sm text-muted-foreground font-light">전혀 그렇지 않다</span>
                   <div className="flex gap-2">
                     {[1, 2, 3, 4, 5].map((value) => (
                       <button
@@ -107,7 +107,7 @@ const BiasTest = () => {
                       </button>
                     ))}
                   </div>
-                  <span className="text-sm text-muted-foreground">매우 그렇다</span>
+                  <span className="text-sm text-muted-foreground font-light">매우 그렇다</span>
                 </div>
               </div>
             ))}
@@ -118,7 +118,7 @@ const BiasTest = () => {
                 disabled={!allAnswered}
                 variant="hero"
                 size="lg"
-                className="w-full"
+                className="w-full font-bold"
               >
                 결과 확인하기
                 <ChevronRight className="ml-2 h-4 w-4" />

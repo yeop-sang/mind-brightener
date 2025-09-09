@@ -16,13 +16,13 @@ const Index = () => {
               <Brain className="w-16 h-16 text-modern-dark" />
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-modern-dark mb-8 tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-black text-modern-dark mb-8 tracking-tight">
             무료 인지편향 테스트
           </h1>
           <p className="text-xl text-modern-green max-w-3xl mx-auto leading-relaxed font-medium">
             연구자들의 객관적 사고를 위한 과학적 진단 도구
             <br />
-            <span className="text-modern-dark/70">정확한 분석으로 더 나은 의사결정을 만들어보세요</span>
+            <span className="text-modern-dark/70 font-light">정확한 분석으로 더 나은 의사결정을 만들어보세요</span>
           </p>
         </header>
 
@@ -35,10 +35,10 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-modern-dark/10 rounded-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
                   <ClipboardCheck className="w-10 h-10 text-modern-dark" />
                 </div>
-                <h2 className="text-2xl font-bold text-modern-dark mb-4">
+                <h2 className="text-2xl font-black text-modern-dark mb-4">
                   테스트 완료
                 </h2>
-                <p className="text-modern-green leading-relaxed mb-8">
+                <p className="text-modern-green leading-relaxed mb-8 font-light">
                   어떠한 성격 유형을 확인할 수 있도록 도와주세요.
                 </p>
               </div>
@@ -59,10 +59,10 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-modern-green/10 rounded-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
                   <BookOpen className="w-10 h-10 text-modern-green" />
                 </div>
-                <h2 className="text-2xl font-bold text-modern-dark mb-4">
+                <h2 className="text-2xl font-black text-modern-dark mb-4">
                   상세 결과 보기
                 </h2>
-                <p className="text-modern-green leading-relaxed mb-8">
+                <p className="text-modern-green leading-relaxed mb-8 font-light">
                   어떠한 성격 유형의 심층 다양한 영역에 어떤 영향을
                   미치는지 알아보세요.
                 </p>
@@ -82,10 +82,10 @@ const Index = () => {
         {/* Features Section */}
         <section className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-modern-dark mb-6">
+            <h2 className="text-4xl md:text-5xl font-black text-modern-dark mb-6">
               어떠분의 잠재력을 모두 발휘하세요
             </h2>
-            <p className="text-xl text-modern-green max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-modern-green max-w-3xl mx-auto leading-relaxed font-light">
               프리미엄 자료를 통해 완전는 사업자세요.
             </p>
           </div>
@@ -97,10 +97,10 @@ const Index = () => {
                   <Target className="w-8 h-8 text-modern-dark" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-modern-dark">
+              <h3 className="text-xl font-bold mb-4 text-modern-dark">
                 객관적 사고
               </h3>
-              <p className="text-modern-green leading-relaxed">
+              <p className="text-modern-green leading-relaxed font-light">
                 편향된 사고 패턴을 인식하고 
                 더욱 객관적인 판단을 내릴 수 있습니다.
               </p>
@@ -112,10 +112,10 @@ const Index = () => {
                   <TrendingUp className="w-8 h-8 text-modern-green" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-modern-dark">
+              <h3 className="text-xl font-bold mb-4 text-modern-dark">
                 연구 품질 향상
               </h3>
-              <p className="text-modern-green leading-relaxed">
+              <p className="text-modern-green leading-relaxed font-light">
                 체계적인 편향 교정으로 
                 연구의 신뢰성과 타당성을 높입니다.
               </p>
@@ -127,10 +127,10 @@ const Index = () => {
                   <Lightbulb className="w-8 h-8 text-modern-dark" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-modern-dark">
+              <h3 className="text-xl font-bold mb-4 text-modern-dark">
                 지속적 학습
               </h3>
-              <p className="text-modern-green leading-relaxed">
+              <p className="text-modern-green leading-relaxed font-light">
                 다양한 학습 콘텐츠로 
                 꾸준한 자기개발이 가능합니다.
               </p>

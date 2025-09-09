@@ -178,8 +178,8 @@ const TestResults = () => {
       <div className="min-h-screen bg-gradient-to-br from-background to-calm-green flex items-center justify-center">
         <Card className="shadow-card animate-scale-in max-w-md w-full mx-4">
           <CardContent className="text-center py-8">
-            <h2 className="text-2xl font-bold mb-4 text-foreground">축하합니다!</h2>
-            <p className="text-muted-foreground mb-6">
+            <h2 className="text-2xl font-black mb-4 text-foreground">축하합니다!</h2>
+            <p className="text-muted-foreground mb-6 font-light">
               현재 특별히 주의해야 할 인지편향이 발견되지 않았습니다.
             </p>
             <Button onClick={() => navigate('/')} variant="hero">
@@ -203,10 +203,10 @@ const TestResults = () => {
             <ChevronLeft className="mr-2 h-4 w-4" />
             메인으로
           </Button>
-          <h1 className="text-3xl font-bold text-foreground mb-2 animate-fade-in">
+          <h1 className="text-3xl font-black text-foreground mb-2 animate-fade-in">
             진단 결과
           </h1>
-          <p className="text-muted-foreground animate-fade-in">
+          <p className="text-muted-foreground animate-fade-in font-light">
             다음과 같은 인지편향이 발견되었습니다
           </p>
         </div>
@@ -216,14 +216,14 @@ const TestResults = () => {
             <Card key={bias.name} className="shadow-card animate-scale-in" style={{animationDelay: `${index * 0.1}s`}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-xl text-foreground">{bias.name}</CardTitle>
+                  <CardTitle className="text-xl text-foreground font-bold">{bias.name}</CardTitle>
                   <Badge variant={bias.color as any}>
                     {bias.severity}
                   </Badge>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">{bias.description}</p>
+                <p className="text-muted-foreground mb-4 font-light">{bias.description}</p>
                 <div className="flex gap-3">
                   <Button 
                     onClick={() => navigate(`/correction/${bias.name.toLowerCase()}`)}

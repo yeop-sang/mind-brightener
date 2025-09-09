@@ -73,7 +73,7 @@ const BiasCorrection = () => {
       <div className="min-h-screen bg-gradient-to-br from-background to-calm-green flex items-center justify-center">
         <Card className="shadow-card animate-scale-in max-w-md w-full mx-4">
           <CardContent className="text-center py-8">
-            <h2 className="text-xl font-bold mb-4 text-foreground">콘텐츠를 찾을 수 없습니다</h2>
+            <h2 className="text-xl font-black mb-4 text-foreground">콘텐츠를 찾을 수 없습니다</h2>
             <Button onClick={() => navigate('/')} variant="hero">
               메인으로 돌아가기
             </Button>
@@ -96,7 +96,7 @@ const BiasCorrection = () => {
               <ChevronLeft className="mr-2 h-4 w-4" />
               결과로 돌아가기
             </Button>
-            <h1 className="text-3xl font-bold text-foreground mb-2 animate-fade-in">
+            <h1 className="text-3xl font-black text-foreground mb-2 animate-fade-in">
               {content.animation.title}
             </h1>
           </div>
@@ -115,7 +115,7 @@ const BiasCorrection = () => {
                   className="rounded-lg"
                 />
               </div>
-              <p className="text-muted-foreground">{content.animation.description}</p>
+              <p className="text-muted-foreground font-light">{content.animation.description}</p>
             </CardContent>
           </Card>
 
@@ -146,7 +146,7 @@ const BiasCorrection = () => {
             <ChevronLeft className="mr-2 h-4 w-4" />
             결과로 돌아가기
           </Button>
-          <h1 className="text-3xl font-bold text-foreground mb-2 animate-fade-in">
+          <h1 className="text-3xl font-black text-foreground mb-2 animate-fade-in">
             {content.webtoon.title}
           </h1>
         </div>
@@ -162,7 +162,7 @@ const BiasCorrection = () => {
                     className="w-full md:w-96 h-64 object-cover rounded-lg"
                   />
                   <div className="flex-1">
-                    <p className="text-lg text-foreground leading-relaxed">
+                    <p className="text-lg text-foreground leading-relaxed font-medium">
                       {panel.text}
                     </p>
                   </div>

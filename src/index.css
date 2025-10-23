@@ -8,42 +8,42 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 60 20% 95%;
-    --foreground: 212 31% 31%;
-    --card: 60 20% 95%;
-    --card-foreground: 212 31% 31%;
-    --popover: 60 20% 95%;
-    --popover-foreground: 212 31% 31%;
-    --primary: 212 31% 31%;
-    --primary-foreground: 60 20% 95%;
-    --secondary: 75 25% 87%;
-    --secondary-foreground: 158 16% 38%;
-    --muted: 43 34% 83%;
-    --muted-foreground: 158 16% 38%;
-    --accent: 158 16% 38%;
-    --accent-foreground: 75 25% 87%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 20% 95%;
-    --border: 43 34% 83%;
-    --input: 43 34% 83%;
-    --ring: 212 31% 31%;
+    --background: 280 40% 97%;
+    --foreground: 260 50% 45%;
+    --card: 280 40% 97%;
+    --card-foreground: 260 50% 45%;
+    --popover: 280 40% 97%;
+    --popover-foreground: 260 50% 45%;
+    --primary: 260 60% 65%;
+    --primary-foreground: 280 40% 98%;
+    --secondary: 160 45% 75%;
+    --secondary-foreground: 260 50% 45%;
+    --muted: 15 50% 85%;
+    --muted-foreground: 260 40% 50%;
+    --accent: 340 60% 80%;
+    --accent-foreground: 260 50% 45%;
+    --destructive: 0 70% 70%;
+    --destructive-foreground: 280 40% 98%;
+    --border: 280 30% 88%;
+    --input: 280 30% 88%;
+    --ring: 260 60% 65%;
 
-    /* Custom modern colors */
-    --modern-dark: 212 31% 31%;
-    --modern-green: 158 16% 38%;
-    --modern-beige: 43 34% 83%;
-    --modern-light-green: 75 25% 87%;
-    --modern-cream: 60 20% 95%;
+    /* Custom pastel colors */
+    --modern-dark: 260 60% 65%;
+    --modern-green: 160 45% 75%;
+    --modern-beige: 15 50% 85%;
+    --modern-light-green: 160 40% 80%;
+    --modern-cream: 280 40% 97%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(212 31% 31%) 0%, hsl(158 16% 38%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(75 25% 87% / 0.3) 0%, hsl(43 34% 83% / 0.2) 100%);
-    --gradient-button: linear-gradient(135deg, hsl(212 31% 31%) 0%, hsl(158 16% 38%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(260 60% 65%) 0%, hsl(340 60% 80%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(160 45% 75% / 0.3) 0%, hsl(15 50% 85% / 0.2) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(260 60% 65%) 0%, hsl(340 60% 80%) 100%);
 
     /* Shadows */
-    --shadow-card: 0 8px 32px -8px hsl(212 31% 31% / 0.12);
-    --shadow-button: 0 4px 16px -4px hsl(212 31% 31% / 0.25);
-    --shadow-elegant: 0 12px 40px -12px hsl(212 31% 31% / 0.15);
+    --shadow-card: 0 8px 32px -8px hsl(260 60% 65% / 0.15);
+    --shadow-button: 0 4px 16px -4px hsl(260 60% 65% / 0.3);
+    --shadow-elegant: 0 12px 40px -12px hsl(260 60% 65% / 0.18);
 
     --radius: 1rem;
 
@@ -65,25 +65,25 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 212 31% 15%;
-    --foreground: 60 20% 95%;
-    --card: 212 31% 18%;
-    --card-foreground: 60 20% 95%;
-    --popover: 212 31% 18%;
-    --popover-foreground: 60 20% 95%;
-    --primary: 75 25% 87%;
-    --primary-foreground: 212 31% 31%;
-    --secondary: 158 16% 25%;
-    --secondary-foreground: 75 25% 87%;
-    --muted: 43 20% 25%;
-    --muted-foreground: 43 34% 70%;
-    --accent: 158 16% 38%;
-    --accent-foreground: 75 25% 87%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 60 20% 95%;
-    --border: 43 20% 25%;
-    --input: 43 20% 25%;
-    --ring: 75 25% 87%;
+    --background: 260 30% 15%;
+    --foreground: 280 40% 90%;
+    --card: 260 30% 18%;
+    --card-foreground: 280 40% 90%;
+    --popover: 260 30% 18%;
+    --popover-foreground: 280 40% 90%;
+    --primary: 260 50% 70%;
+    --primary-foreground: 260 30% 15%;
+    --secondary: 160 35% 40%;
+    --secondary-foreground: 280 40% 90%;
+    --muted: 15 30% 30%;
+    --muted-foreground: 15 50% 75%;
+    --accent: 340 50% 55%;
+    --accent-foreground: 280 40% 90%;
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 280 40% 90%;
+    --border: 260 20% 25%;
+    --input: 260 20% 25%;
+    --ring: 260 50% 70%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

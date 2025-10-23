@@ -19,51 +19,37 @@ const Index = () => {
   const [showLoginAlert, setShowLoginAlert] = useState(false);
 
   useEffect(() => {
-    // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setUser(session?.user ?? null);
-      }
-    );
-
-    return () => subscription.unsubscribe();
+    // DEV MODE: Mock authentication
+    const mockUser = localStorage.getItem('mockUser');
+    if (mockUser) {
+      setUser(JSON.parse(mockUser));
+    }
   }, []);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/`
-          }
-        });
-        if (error) throw error;
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
-      }
-    } catch (error: any) {
-      alert(error.message);
-    } finally {
+    // DEV MODE: Mock authentication - any email/password works
+    setTimeout(() => {
+      const mockUser = {
+        id: Math.random().toString(36).substring(7),
+        email: email,
+        created_at: new Date().toISOString(),
+        aud: 'authenticated',
+        role: 'authenticated'
+      };
+      
+      localStorage.setItem('mockUser', JSON.stringify(mockUser));
+      setUser(mockUser as any);
       setLoading(false);
-    }
+    }, 500); // Simulate network delay
   };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    // DEV MODE: Clear mock user
+    localStorage.removeItem('mockUser');
+    setUser(null);
   };
 
   const handleTestClick = (path: string) => {

@@ -4,10 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Brain, ClipboardCheck, BookOpen, Target, TrendingUp, Lightbulb, User, Lock, Mail, AlertCircle } from "lucide-react";
+import {
+  Brain,
+  ClipboardCheck,
+  BookOpen,
+  Target,
+  TrendingUp,
+  Lightbulb,
+  User,
+  Lock,
+  Mail,
+  AlertCircle,
+} from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { User as SupabaseUser } from "@supabase/supabase-js";
-import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -20,7 +39,7 @@ const Index = () => {
 
   useEffect(() => {
     // DEV MODE: Mock authentication
-    const mockUser = localStorage.getItem('mockUser');
+    const mockUser = localStorage.getItem("mockUser");
     if (mockUser) {
       setUser(JSON.parse(mockUser));
     }
@@ -36,11 +55,11 @@ const Index = () => {
         id: Math.random().toString(36).substring(7),
         email: email,
         created_at: new Date().toISOString(),
-        aud: 'authenticated',
-        role: 'authenticated'
+        aud: "authenticated",
+        role: "authenticated",
       };
-      
-      localStorage.setItem('mockUser', JSON.stringify(mockUser));
+
+      localStorage.setItem("mockUser", JSON.stringify(mockUser));
       setUser(mockUser as any);
       setLoading(false);
     }, 500); // Simulate network delay
@@ -48,7 +67,7 @@ const Index = () => {
 
   const handleSignOut = async () => {
     // DEV MODE: Clear mock user
-    localStorage.removeItem('mockUser');
+    localStorage.removeItem("mockUser");
     setUser(null);
   };
 
@@ -77,7 +96,7 @@ const Index = () => {
             <p className="text-xl text-modern-green max-w-3xl mx-auto leading-relaxed font-medium mb-8">
               {user.email}님, 인지편향 테스트를 시작해보세요
             </p>
-            <Button 
+            <Button
               onClick={handleSignOut}
               variant="outline"
               className="border-2 border-modern-green text-modern-green hover:bg-modern-green hover:text-white"
@@ -102,8 +121,8 @@ const Index = () => {
                     인지편향 테스트를 통해 객관적 사고력을 진단해보세요.
                   </p>
                 </div>
-                <Button 
-                  onClick={() => navigate('/bias-test')}
+                <Button
+                  onClick={() => navigate("/bias-test")}
                   className="w-full bg-modern-dark hover:bg-modern-green text-white transition-all duration-300 text-base py-6 font-medium rounded-xl"
                   size="lg"
                 >
@@ -126,8 +145,8 @@ const Index = () => {
                     인지편향에 대한 상세한 학습 자료를 확인하세요.
                   </p>
                 </div>
-                <Button 
-                  onClick={() => navigate('/correction/확증편향')}
+                <Button
+                  onClick={() => navigate("/correction/확증편향")}
                   variant="outline"
                   className="w-full border-2 border-modern-green text-modern-green hover:bg-modern-green hover:text-white transition-all duration-300 text-base py-6 font-medium rounded-xl"
                   size="lg"
@@ -158,14 +177,16 @@ const Index = () => {
           <p className="text-xl text-modern-green max-w-3xl mx-auto leading-relaxed font-medium">
             연구자들의 객관적 사고를 위한 과학적 진단 도구
             <br />
-            <span className="text-modern-dark/70 font-light">정확한 분석으로 더 나은 의사결정을 만들어보세요</span>
+            <span className="text-modern-dark/70 font-light">
+              정확한 분석으로 더 나은 의사결정을 만들어보세요
+            </span>
           </p>
         </header>
 
-        {/* Main Content - Two Column Layout */}
-        <section className="grid lg:grid-cols-5 gap-12 mb-20">
+        {/* Main Content - Two Equal Columns Centered */}
+        <section className="flex flex-col lg:flex-row justify-center items-start gap-12 mb-20 w-full">
           {/* Left Column - Test Actions */}
-          <div className="space-y-8 lg:col-span-2">
+          <div className="flex-1 max-w-xl w-full space-y-8">
             <Card className="relative overflow-hidden bg-white/90 backdrop-blur-sm hover:shadow-card transition-all duration-500 hover:-translate-y-2 group border-0 shadow-lg">
               <div className="absolute inset-0 bg-gradient-to-br from-modern-dark/5 via-transparent to-modern-green/5" />
               <CardContent className="relative p-10">
@@ -180,8 +201,8 @@ const Index = () => {
                     다양한 인지편향을 진단하고 객관적 사고력을 향상시켜보세요.
                   </p>
                 </div>
-                <Button 
-                  onClick={() => handleTestClick('/bias-test')}
+                <Button
+                  onClick={() => handleTestClick("/bias-test")}
                   className="w-full bg-modern-dark hover:bg-modern-green text-white transition-all duration-300 text-base py-6 font-medium rounded-xl"
                   size="lg"
                 >
@@ -204,8 +225,8 @@ const Index = () => {
                     인지편향 교정을 위한 체계적인 학습 자료를 확인하세요.
                   </p>
                 </div>
-                <Button 
-                  onClick={() => handleTestClick('/correction/확증편향')}
+                <Button
+                  onClick={() => handleTestClick("/correction/확증편향")}
                   variant="outline"
                   className="w-full border-2 border-modern-green text-modern-green hover:bg-modern-green hover:text-white transition-all duration-300 text-base py-6 font-medium rounded-xl"
                   size="lg"
@@ -217,7 +238,7 @@ const Index = () => {
           </div>
 
           {/* Right Column - Login/User Info */}
-          <div className="flex lg:col-span-3">
+          <div className="flex-1 max-w-xl w-full">
             {user ? (
               /* User Info Section */
               <Card className="relative overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-elegant h-full">
@@ -234,21 +255,23 @@ const Index = () => {
                       안녕하세요, {user.email}님!
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4 mb-8 flex-grow">
                     <div className="p-4 bg-modern-beige/20 rounded-xl">
                       <p className="text-sm text-modern-dark/70 mb-1">이메일</p>
-                      <p className="font-medium text-modern-dark">{user.email}</p>
+                      <p className="font-medium text-modern-dark">
+                        {user.email}
+                      </p>
                     </div>
                     <div className="p-4 bg-modern-beige/20 rounded-xl">
                       <p className="text-sm text-modern-dark/70 mb-1">가입일</p>
                       <p className="font-medium text-modern-dark">
-                        {new Date(user.created_at).toLocaleDateString('ko-KR')}
+                        {new Date(user.created_at).toLocaleDateString("ko-KR")}
                       </p>
                     </div>
                   </div>
-                  
-                  <Button 
+
+                  <Button
                     onClick={handleSignOut}
                     variant="outline"
                     className="w-full border-2 border-modern-green text-modern-green hover:bg-modern-green hover:text-white transition-all duration-300 py-6 font-medium rounded-xl mt-auto"
@@ -267,16 +290,24 @@ const Index = () => {
                       <User className="w-8 h-8 text-modern-dark" />
                     </div>
                     <h2 className="text-2xl font-black text-modern-dark mb-4">
-                      {isSignUp ? '회원가입' : '로그인'}
+                      {isSignUp ? "회원가입" : "로그인"}
                     </h2>
                     <p className="text-modern-green font-light">
                       테스트 결과를 저장하고 관리하세요
                     </p>
                   </div>
-                  
-                  <form onSubmit={handleAuth} className="space-y-6 flex-grow flex flex-col">
+
+                  <form
+                    onSubmit={handleAuth}
+                    className="space-y-6 flex-grow flex flex-col"
+                  >
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-modern-dark font-medium">이메일</Label>
+                      <Label
+                        htmlFor="email"
+                        className="text-modern-dark font-medium"
+                      >
+                        이메일
+                      </Label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-modern-green" />
                         <Input
@@ -290,9 +321,14 @@ const Index = () => {
                         />
                       </div>
                     </div>
-                    
+
                     <div className="space-y-2">
-                      <Label htmlFor="password" className="text-modern-dark font-medium">비밀번호</Label>
+                      <Label
+                        htmlFor="password"
+                        className="text-modern-dark font-medium"
+                      >
+                        비밀번호
+                      </Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-modern-green" />
                         <Input
@@ -306,25 +342,27 @@ const Index = () => {
                         />
                       </div>
                     </div>
-                    
+
                     <div className="flex-grow"></div>
-                    
-                    <Button 
-                      type="submit" 
+
+                    <Button
+                      type="submit"
                       disabled={loading}
                       className="w-full bg-modern-dark hover:bg-modern-green text-white transition-all duration-300 py-6 font-medium rounded-xl"
                     >
-                      {loading ? '처리중...' : (isSignUp ? '회원가입' : '로그인')}
+                      {loading ? "처리중..." : isSignUp ? "회원가입" : "로그인"}
                     </Button>
                   </form>
-                  
+
                   <div className="mt-6 text-center">
                     <button
                       type="button"
                       onClick={() => setIsSignUp(!isSignUp)}
                       className="text-modern-green hover:text-modern-dark transition-colors font-medium"
                     >
-                      {isSignUp ? '이미 계정이 있으신가요? 로그인' : '계정이 없으신가요? 회원가입'}
+                      {isSignUp
+                        ? "이미 계정이 있으신가요? 로그인"
+                        : "계정이 없으신가요? 회원가입"}
                     </button>
                   </div>
                 </CardContent>
@@ -343,7 +381,7 @@ const Index = () => {
               과학적 진단을 통해 더 나은 의사결정을 만들어보세요.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl hover:bg-white/80 transition-all duration-300 group hover:-translate-y-1">
               <div className="mb-6 flex justify-center">
@@ -355,11 +393,11 @@ const Index = () => {
                 객관적 사고
               </h3>
               <p className="text-modern-green leading-relaxed font-light">
-                편향된 사고 패턴을 인식하고 
-                더욱 객관적인 판단을 내릴 수 있습니다.
+                편향된 사고 패턴을 인식하고 더욱 객관적인 판단을 내릴 수
+                있습니다.
               </p>
             </div>
-            
+
             <div className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl hover:bg-white/80 transition-all duration-300 group hover:-translate-y-1">
               <div className="mb-6 flex justify-center">
                 <div className="w-16 h-16 bg-modern-green/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -370,11 +408,10 @@ const Index = () => {
                 연구 품질 향상
               </h3>
               <p className="text-modern-green leading-relaxed font-light">
-                체계적인 편향 교정으로 
-                연구의 신뢰성과 타당성을 높입니다.
+                체계적인 편향 교정으로 연구의 신뢰성과 타당성을 높입니다.
               </p>
             </div>
-            
+
             <div className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl hover:bg-white/80 transition-all duration-300 group hover:-translate-y-1">
               <div className="mb-6 flex justify-center">
                 <div className="w-16 h-16 bg-modern-beige/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -385,8 +422,7 @@ const Index = () => {
                 지속적 학습
               </h3>
               <p className="text-modern-green leading-relaxed font-light">
-                다양한 학습 콘텐츠로 
-                꾸준한 자기개발이 가능합니다.
+                다양한 학습 콘텐츠로 꾸준한 자기개발이 가능합니다.
               </p>
             </div>
           </div>
@@ -411,7 +447,7 @@ const Index = () => {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogAction 
+              <AlertDialogAction
                 onClick={() => setShowLoginAlert(false)}
                 className="bg-modern-dark hover:bg-modern-green text-white"
               >

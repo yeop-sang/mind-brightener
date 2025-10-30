@@ -15,6 +15,7 @@ import {
   Lock,
   Mail,
   AlertCircle,
+  Calendar,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { User as SupabaseUser } from "@supabase/supabase-js";
@@ -33,42 +34,90 @@ const Index = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showLoginAlert, setShowLoginAlert] = useState(false);
+  const [hasTested, setHasTested] = useState(false);
 
   useEffect(() => {
-    // DEV MODE: Mock authentication
-    const mockUser = localStorage.getItem("mockUser");
-    if (mockUser) {
-      setUser(JSON.parse(mockUser));
-    }
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        localStorage.setItem("user_id", user.id);
+        setUser(user);
+
+        // 🔹 Cek apakah user sudah pernah test
+        const { data: testData, error } = await supabase
+          .from("bias_test_results")
+          .select("id")
+          .eq("user_id", user.id)
+          .limit(1);
+
+        if (error) {
+          console.error("Error checking test status:", error);
+        } else {
+          setHasTested(testData.length > 0);
+        }
+      }
+    };
+
+    fetchUser();
   }, []);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // DEV MODE: Mock authentication - any email/password works
-    setTimeout(() => {
-      const mockUser = {
-        id: Math.random().toString(36).substring(7),
-        email: email,
-        created_at: new Date().toISOString(),
-        aud: "authenticated",
-        role: "authenticated",
-      };
+    try {
+      let authResult;
 
-      localStorage.setItem("mockUser", JSON.stringify(mockUser));
-      setUser(mockUser as any);
+      if (isSignUp) {
+        authResult = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: window.location.origin,
+            data: {
+              name,
+              age,
+            },
+          },
+        });
+      } else {
+        authResult = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+      }
+
+      if (authResult.error) {
+        alert(authResult.error.message);
+      } else if (authResult.data.user) {
+        localStorage.setItem("user_id", authResult.data.user.id);
+        setUser(authResult.data.user);
+      }
+    } catch (error) {
+      console.error("Auth error:", error);
+      alert("Terjadi kesalahan saat otentikasi.");
+    } finally {
       setLoading(false);
-    }, 500); // Simulate network delay
+    }
   };
 
   const handleSignOut = async () => {
-    // DEV MODE: Clear mock user
-    localStorage.removeItem("mockUser");
-    setUser(null);
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Sign out error:", error);
+    } else {
+      localStorage.removeItem("user_id");
+      setUser(null);
+      window.location.reload();
+    }
   };
 
   const handleTestClick = (path: string) => {
@@ -122,11 +171,13 @@ const Index = () => {
                   </p>
                 </div>
                 <Button
-                  onClick={() => navigate("/bias-test")}
+                  onClick={() =>
+                    navigate(hasTested ? "/bias-test/retest" : "/bias-test")
+                  }
                   className="w-full bg-modern-dark hover:bg-modern-green text-white transition-all duration-300 text-base py-6 font-medium rounded-xl"
                   size="lg"
                 >
-                  테스트 시작하기
+                  {hasTested ? "다시 테스트하기" : "테스트 시작하기"}
                 </Button>
               </CardContent>
             </Card>
@@ -301,6 +352,7 @@ const Index = () => {
                     onSubmit={handleAuth}
                     className="space-y-6 flex-grow flex flex-col"
                   >
+                    {/* EMAIL */}
                     <div className="space-y-2">
                       <Label
                         htmlFor="email"
@@ -322,6 +374,7 @@ const Index = () => {
                       </div>
                     </div>
 
+                    {/* PASSWORD */}
                     <div className="space-y-2">
                       <Label
                         htmlFor="password"
@@ -342,6 +395,53 @@ const Index = () => {
                         />
                       </div>
                     </div>
+
+                    {/* NAME dan AGE hanya muncul saat Sign Up */}
+                    {isSignUp && (
+                      <>
+                        <div className="space-y-2">
+                          <Label
+                            htmlFor="name"
+                            className="text-modern-dark font-medium"
+                          >
+                            이름
+                          </Label>
+                          <div className="relative">
+                            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-modern-green" />
+                            <Input
+                              id="name"
+                              type="text"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              className="pl-10 border-modern-beige focus:border-modern-green"
+                              placeholder="이름을 입력하세요"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label
+                            htmlFor="age"
+                            className="text-modern-dark font-medium"
+                          >
+                            나이
+                          </Label>
+                          <div className="relative">
+                            <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-modern-green" />
+                            <Input
+                              id="age"
+                              type="number"
+                              value={age}
+                              onChange={(e) => setAge(e.target.value)}
+                              className="pl-10 border-modern-beige focus:border-modern-green"
+                              placeholder="나이를 입력하세요"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </>
+                    )}
 
                     <div className="flex-grow"></div>
 

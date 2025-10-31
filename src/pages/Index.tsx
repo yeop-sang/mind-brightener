@@ -172,7 +172,7 @@ const Index = () => {
                 </div>
                 <Button
                   onClick={() =>
-                    navigate(hasTested ? "/bias-test/retest" : "/bias-test")
+                    navigate(hasTested ? "/bias-test" : "/bias-test")
                   }
                   className="w-full bg-modern-dark hover:bg-modern-green text-white transition-all duration-300 text-base py-6 font-medium rounded-xl"
                   size="lg"
@@ -197,7 +197,7 @@ const Index = () => {
                   </p>
                 </div>
                 <Button
-                  onClick={() => navigate("/correction/확증편향")}
+                  onClick={() => navigate("/results")}
                   variant="outline"
                   className="w-full border-2 border-modern-green text-modern-green hover:bg-modern-green hover:text-white transition-all duration-300 text-base py-6 font-medium rounded-xl"
                   size="lg"

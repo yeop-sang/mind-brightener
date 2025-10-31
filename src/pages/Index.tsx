@@ -77,20 +77,22 @@ const Index = () => {
       let authResult;
 
       if (isSignUp) {
-        const { data, error } = await supabase.auth.signUp({
+        authResult = await supabase.auth.signUp({
           email,
           password,
           options: {
-            data: { name, age },
+            emailRedirectTo: "https://mind-brightener.vercel.app",
+            data: {
+              name,
+              age,
+            },
           },
         });
-
-        if (error) throw error;
-
-        // ✅ Auto login langsung tanpa verifikasi
-        await supabase.auth.signInWithPassword({ email, password });
       } else {
-        await supabase.auth.signInWithPassword({ email, password });
+        authResult = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
       }
 
       if (authResult.error) {

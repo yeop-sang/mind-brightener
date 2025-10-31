@@ -77,22 +77,20 @@ const Index = () => {
       let authResult;
 
       if (isSignUp) {
-        authResult = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
-            emailRedirectTo: window.location.origin,
-            data: {
-              name,
-              age,
-            },
+            data: { name, age },
           },
         });
+
+        if (error) throw error;
+
+        // ✅ Auto login langsung tanpa verifikasi
+        await supabase.auth.signInWithPassword({ email, password });
       } else {
-        authResult = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+        await supabase.auth.signInWithPassword({ email, password });
       }
 
       if (authResult.error) {

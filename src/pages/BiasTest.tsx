@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 
 interface Question {
   id: number;
@@ -45,28 +47,74 @@ const questions: Question[] = [
 
 const BiasTest = () => {
   const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleAnswerChange = (questionId: number, value: number) => {
-    setAnswers(prev => ({ ...prev, [questionId]: value }));
+    setAnswers((prev) => ({ ...prev, [questionId]: value }));
   };
 
-  const handleSubmit = () => {
-    localStorage.setItem('biasTestResults', JSON.stringify(answers));
-    navigate('/results');
+  const handleSubmit = async () => {
+    setLoading(true);
+
+    try {
+      const userId = localStorage.getItem("user_id");
+
+      if (!userId) {
+        toast({
+          title: "로그인 필요",
+          description: "테스트 결과를 저장하려면 로그인이 필요합니다.",
+          variant: "destructive",
+        });
+        navigate("/");
+        return;
+      }
+
+      // Simpan ke database Supabase
+      const { data, error } = await supabase
+        .from("bias_test_results")
+        .insert([
+          {
+            user_id: userId,
+            answers,
+            created_at: new Date().toISOString(), // timestamp manual
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      toast({
+        title: "저장 완료!",
+        description: "테스트 결과가 저장되었습니다.",
+      });
+
+      // Simpan ID tes terakhir di localStorage
+      if (data) {
+        localStorage.setItem("latestTestId", data.id);
+      }
+
+      navigate("/results");
+    } catch (err: any) {
+      console.error("Error saving test results:", err);
+      toast({
+        title: "저장 실패",
+        description: err.message || "결과 저장 중 문제가 발생했습니다.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const allAnswered = questions.every(q => answers[q.id] !== undefined);
+  const allAnswered = questions.every((q) => answers[q.id] !== undefined);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-calm-green py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-8">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/')}
-            className="mb-4 font-medium"
-          >
+          <Button variant="ghost" onClick={() => navigate("/")} className="mb-4 font-medium">
             <ChevronLeft className="mr-2 h-4 w-4" />
             돌아가기
           </Button>
@@ -99,8 +147,8 @@ const BiasTest = () => {
                         onClick={() => handleAnswerChange(question.id, value)}
                         className={`w-10 h-10 rounded-full border-2 transition-all duration-200 font-bold ${
                           answers[question.id] === value
-                            ? 'bg-modern-dark border-modern-dark text-white shadow-lg'
-                            : 'border-modern-beige hover:border-modern-green hover:bg-modern-green/10 text-modern-dark'
+                            ? "bg-modern-dark border-modern-dark text-white shadow-lg"
+                            : "border-modern-beige hover:border-modern-green hover:bg-modern-green/10 text-modern-dark"
                         }`}
                       >
                         {value}
@@ -111,17 +159,17 @@ const BiasTest = () => {
                 </div>
               </div>
             ))}
-            
+
             <div className="pt-6">
-              <Button 
+              <Button
                 onClick={handleSubmit}
-                disabled={!allAnswered}
+                disabled={!allAnswered || loading}
                 variant="hero"
                 size="lg"
                 className="w-full font-bold"
               >
-                결과 확인하기
-                <ChevronRight className="ml-2 h-4 w-4" />
+                {loading ? "저장 중..." : "결과 확인하기"}
+                {!loading && <ChevronRight className="ml-2 h-4 w-4" />}
               </Button>
             </div>
           </CardContent>

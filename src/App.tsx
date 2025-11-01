@@ -21,7 +21,10 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/bias-test" element={<BiasTest />} />
           <Route path="/results" element={<TestResults />} />
-          <Route path="/correction/:biasName" element={<BiasCorrection />} />
+          <Route
+            path="/correction/:biasName/:type"
+            element={<BiasCorrection />}
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

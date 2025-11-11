@@ -28,6 +28,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -35,7 +36,6 @@ const Index = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showLoginAlert, setShowLoginAlert] = useState(false);
@@ -51,7 +51,6 @@ const Index = () => {
         localStorage.setItem("user_id", user.id);
         setUser(user);
 
-        // 🔹 Cek apakah user sudah pernah test
         const { data: testData, error } = await supabase
           .from("bias_test_results")
           .select("id")
@@ -84,26 +83,48 @@ const Index = () => {
             emailRedirectTo: "https://mind-brightener.vercel.app",
             data: {
               name,
-              age,
             },
           },
         });
+
+        if (authResult.error) {
+          alert(authResult.error.message);
+        } else if (authResult.data.user) {
+          // Show success toast for email validation
+          toast.success("회원가입이 완료되었습니다!", {
+            description: "이메일 인증을 완료해주세요. 이메일을 확인해주세요.",
+            duration: 5000,
+          });
+
+          // Switch to login mode and show message
+          setIsSignUp(false);
+          setEmail("");
+          setPassword("");
+          setName("");
+
+          // Optional: You can show additional instructions
+          setTimeout(() => {
+            toast.info("이메일 인증 후 로그인해주세요", {
+              duration: 3000,
+            });
+          }, 1000);
+        }
       } else {
         authResult = await supabase.auth.signInWithPassword({
           email,
           password,
         });
-      }
 
-      if (authResult.error) {
-        alert(authResult.error.message);
-      } else if (authResult.data.user) {
-        localStorage.setItem("user_id", authResult.data.user.id);
-        setUser(authResult.data.user);
+        if (authResult.error) {
+          alert(authResult.error.message);
+        } else if (authResult.data.user) {
+          localStorage.setItem("user_id", authResult.data.user.id);
+          setUser(authResult.data.user);
+        }
       }
     } catch (error) {
       console.error("Auth error:", error);
-      alert("Terjadi kesalahan saat otentikasi.");
+      alert("Auth erro");
     } finally {
       setLoading(false);
     }
@@ -143,7 +164,8 @@ const Index = () => {
               환영합니다!
             </h1>
             <p className="text-xl text-modern-green max-w-3xl mx-auto leading-relaxed font-medium mb-8">
-              {user.email}님, 인지편향 테스트를 시작해보세요
+              {user.user_metadata?.name || user.email}님, 인지편향 테스트를
+              시작해보세요
             </p>
             <Button
               onClick={handleSignOut}
@@ -223,7 +245,7 @@ const Index = () => {
             </div>
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-modern-dark mb-8 tracking-tight">
-            무료 인지편향 테스트
+            인지 편향 검사
           </h1>
           <p className="text-xl text-modern-green max-w-3xl mx-auto leading-relaxed font-medium">
             연구자들의 객관적 사고를 위한 과학적 진단 도구
@@ -396,51 +418,28 @@ const Index = () => {
                       </div>
                     </div>
 
-                    {/* NAME dan AGE hanya muncul saat Sign Up */}
+                    {/* NAME hanya muncul saat Sign Up */}
                     {isSignUp && (
-                      <>
-                        <div className="space-y-2">
-                          <Label
-                            htmlFor="name"
-                            className="text-modern-dark font-medium"
-                          >
-                            이름
-                          </Label>
-                          <div className="relative">
-                            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-modern-green" />
-                            <Input
-                              id="name"
-                              type="text"
-                              value={name}
-                              onChange={(e) => setName(e.target.value)}
-                              className="pl-10 border-modern-beige focus:border-modern-green"
-                              placeholder="이름을 입력하세요"
-                              required
-                            />
-                          </div>
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="name"
+                          className="text-modern-dark font-medium"
+                        >
+                          이름
+                        </Label>
+                        <div className="relative">
+                          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-modern-green" />
+                          <Input
+                            id="name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="pl-10 border-modern-beige focus:border-modern-green"
+                            placeholder="이름을 입력하세요"
+                            required
+                          />
                         </div>
-
-                        <div className="space-y-2">
-                          <Label
-                            htmlFor="age"
-                            className="text-modern-dark font-medium"
-                          >
-                            나이
-                          </Label>
-                          <div className="relative">
-                            <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-modern-green" />
-                            <Input
-                              id="age"
-                              type="number"
-                              value={age}
-                              onChange={(e) => setAge(e.target.value)}
-                              className="pl-10 border-modern-beige focus:border-modern-green"
-                              placeholder="나이를 입력하세요"
-                              required
-                            />
-                          </div>
-                        </div>
-                      </>
+                      </div>
                     )}
 
                     <div className="flex-grow"></div>

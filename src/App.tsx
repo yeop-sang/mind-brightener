@@ -22,10 +22,10 @@ const App = () => (
           <Route path="/bias-test" element={<BiasTest />} />
           <Route path="/results" element={<TestResults />} />
           <Route
-            path="/correction/:biasName/:type"
+            path="/correction/:biasName/:type/:idtest"
             element={<BiasCorrection />}
           />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

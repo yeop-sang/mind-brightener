@@ -10,6 +10,7 @@ import { biasList } from "@/lib/bias";
 
 const TestResults = () => {
   const [results, setResults] = useState<any>([]);
+  const [id, setId] = useState<any>("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -101,7 +102,7 @@ const TestResults = () => {
         })
         .map(([bias]) => biasList.find((b) => b.biasName === bias))
         .filter(Boolean);
-
+      setId(data.id);
       setResults(detectedBiases);
     } catch (err: any) {
       console.error(err);
@@ -167,7 +168,7 @@ const TestResults = () => {
                     navigate(
                       `/correction/${bias.biasName
                         .replaceAll(" ", "-")
-                        .toLowerCase()}/animation`
+                        .toLowerCase()}/animation/${id}`
                     )
                   }
                   className="w-full bg-modern-dark hover:bg-modern-green text-white font-medium"
@@ -181,7 +182,7 @@ const TestResults = () => {
                     navigate(
                       `/correction/${bias.biasName
                         .replaceAll(" ", "-")
-                        .toLowerCase()}/video`
+                        .toLowerCase()}/video/${id}`
                     )
                   }
                   className="w-full bg-modern-dark hover:bg-modern-green text-white font-medium"

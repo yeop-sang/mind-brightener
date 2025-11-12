@@ -95,13 +95,14 @@ const TestResults = () => {
         .filter(([bias, scores]) => {
           if (scores.length > 1) {
             const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
-            return avg <= 3;
+            return avg > 3; // ✅ reversed condition
           }
 
-          return scores[0] <= 2;
+          return scores[0] > 3;
         })
         .map(([bias]) => biasList.find((b) => b.biasName === bias))
         .filter(Boolean);
+
       setId(data.id);
       setResults(detectedBiases);
     } catch (err: any) {
